@@ -4,6 +4,7 @@ import cn.piesat.realtimereceive.send.ISendToKafka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.binding.BinderAwareChannelResolver;
+import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.GenericMessage;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Service;
  * @author zk
  * @date 2019/3/19 13:52
  */
-@EnableBinding
+@EnableBinding(Source.class)
 public class SendToKafkaImpl  implements ISendToKafka {
+
+    @Autowired
+    private Source source;
     @Autowired
     private BinderAwareChannelResolver resolver;
     @Override
